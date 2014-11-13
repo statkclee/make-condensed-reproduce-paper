@@ -24,10 +24,9 @@ Until eventually, it finds himiself saying, "Right, so I need to shave the yak..
 We won't go that far with him, though --- not today.
 
 Instead, here's that set of jobs once again.
-We can think of this set as a **graph**.
-
-The things he needs to do --- the ***tasks*** --- are the graph's nodes.
-The ***dependencies*** between the tasks are the graph's edges.
+We can think of this set as a graph.
+The things he needs to do are the graph's nodes.
+The **dependencies** between the tasks are the graph's edges.
 Since the robot can only do one thing at a time,
 it needs to find an ordering on these tasks such that everything a given task depends on is done before it.
 

@@ -3,31 +3,42 @@ layout: page
 title: Automating Tasks with Make
 subtitle: Instructor's Guide
 ---
-## Overall
+## Legend
 
 FIXME
 
-## General Points
+## Overall
 
-* Point
-* Point
+*   FIXME
 
-## Basic Tasks
+*   FIXME
 
-* Point
-* Point
+## [Introduction](01-intro.html)
 
-## Automatic Variables and Wildcards
+*   FIXME
 
-* Point
-* Point
+*   FIXME
 
-## Patterns
+## [Basic Tasks](02-basics.html)
 
-* Point
-* Point
+*   FIXME
 
-## Variables
+*   FIXME
 
-* Point
-* Point
+## [Automatic Variables and Wildcards](03-automatic-variables.html)
+
+*   FIXME
+
+*   FIXME
+
+## [Patterns](04-patterns.html)
+
+*   FIXME
+
+*   FIXME
+
+## [Variables](05-variables.html)
+
+*   FIXME
+
+*   FIXME
