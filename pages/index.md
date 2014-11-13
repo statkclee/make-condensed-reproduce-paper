@@ -1,7 +1,6 @@
 ---
-layout: lesson
+layout: page
 title: Automating Tasks with Make
-keywords: ["make", "prerequisite", "dependency"]
 ---
 Originally invented to manage compilation of programs, `make` can be
 used to automatically execute sequences of commands (programs) and
@@ -23,15 +22,15 @@ general, specifying a pattern for creating a certain class of files.
 
 ## Topics
 
-*   [Introduction](00-intro.html)
-*   [Basic Tasks](01-basics.html)
-*   [Automatic Variables and Wildcards](02-automatic-variables.html)
-*   [Patterns](03-patterns.html)
-*   [Variables](04-variables.html)
-*   [Futher Reading](05-futher-reading.html)
+1.  [Introduction](01-intro.html)
+2.  [Basic Tasks](02-basics.html)
+3.  [Automatic Variables and Wildcards](03-automatic-variables.html)
+4.  [Patterns](04-patterns.html)
+5.  [Variables](05-variables.html)
 
 ## Other Resources
 
 * [Motivation](motivation.html)
 * [Reference Guide](reference.html)
+* [Next Steps](discussion.html)
 * [Instructor's Guide](instructors.html)

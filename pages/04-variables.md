@@ -1,24 +1,19 @@
 ---
-layout: lesson
-root: ../..
-title: Variables
-level: intermediate
+layout: page
+title: Automating Tasks with Make
+subtopic: Variables
+minutes: 20
 ---
-This chapter describes yet another way to make Makefiles rules more
-generic. Make *variables* can contain be used to specify any part of a
-rule (the target, the prerequisites, the commands to run, parts of
-file names, etc.). They can also be specified externally when invoking
-`make`, adapting the rules without modifying the Makefile.
-
-Objectives
-----------
-* show the general syntax for using Makefile variables
-* show how variables can be defined in the Makefile
-* show how variables can be specified when invoking `make`
+> ## Learning Objectives {.objectives}
+>
+> * show the general syntax for using Makefile variables
+> * show how variables can be defined in the Makefile
+> * show how variables can be specified when invoking `make`
 
 Just when we thought we were done writing our Makefile,
 our supervisor reminded us that all papers must conform to the university's new style rules.
-That means that `paper.pdf` has one more dependency: the official university style file `euphoric.wps`.
+That means that `paper.pdf` has one more dependency:
+the official university style file `euphoric.wps`.
 Unfortunately, on our laptop, that file lives in `C:\papers`,
 but on the machine we use in the lab, it's in `/lib/styles`.
 
@@ -32,31 +27,22 @@ How should we handle this difference?
 If we start with the Makefile we've written so far,
 the brute-force approach is to just add the style files to our commands:
 
-~~~
+~~~ {.make}
 paper.pdf : paper.wdp figure-1.svg figure-2.svg
         wdp2pdf --style c:/papers/euphoric.wps $<
-~~~
-{:class="in"}
 
-~~~
 figure-%.svg : summary-%.dat
         sgr -N -r -s c:/papers/euphoric.fig $@ $^
-~~~
-{:class="in"}
 
-~~~
 summary-%.dat : data-%-*.dat
         stats.py $@ $^
-~~~
-{:class="in"}
 
-~~~
 data-*-*.dat : stats.py
         touch $@
 ~~~
-{:class="in"}
 
-There's some redundancy here, though: we are specifying the same directory twice.
+There's some redundancy here, though:
+we are specifying the same directory twice.
 And notice that we haven't explicitly listed `euphoric.wps` or `euphoric.fig`
 as prerequisites of `paper.pdf`,
 or of the two figure we're generating.
@@ -83,11 +69,11 @@ the version control system will want to save those changes in the repository the
 We probably don't actually want to do that, since it would mean that the next time we updated on the other machine,
 its Makefile would be overwritten.
 
-The third option&mdash;the right one&mdash;is to refactor our Makefile to make the problem go away entirely.
-We can do this by defining a [variable](../../gloss.html#variable), just as we would define a constant or variable in a program.
+The third option --- the right one --- is to refactor our Makefile to make the problem go away entirely.
+We can do this by defining a **variable**, just as we would define a constant or variable in a program.
 Here's our Makefile with a variable defined and used:
 
-~~~
+~~~ {.make}
 # with-macro.mk
 STYLE_DIR=c:/papers/
 
@@ -103,7 +89,6 @@ summary-%.dat : data-%-*.dat
 data-*-*.dat : stats.py
         touch $@
 ~~~
-{:class="in"}
 
 The definition looks like definitions in most programming languages:
 the variable is called `STYLE_DIR`, and its value is `c:/papers/`.
@@ -115,9 +100,9 @@ now, when we want to move our Makefile from one machine to another, we only have
 However, while we no longer have to worry about consistency,
 we're still making changes to a file that's under version control that we *don't* want written back to the repository.
 
-> #### Parenthesizing Variables in Make
+> ## Parenthesizing Variables in Make {.callout}
 >
-> We have to put curly brackets or parentheses around a variable's name when we use it&mdash;we can't just write `$VARIABLE`.
+> We have to put curly brackets or parentheses around a variable's name when we use it --- we can't just write `$VARIABLE`.
 > If we do, `make` will interpret it as `$V` (a reference to the variable `V`) followed by "ARIABLE".
 > Since we probably don't have a variable called `V`, `$V` will expand to the empty string,
 > so `$VARIABLE` without parentheses will just be "ARIABLE".
@@ -125,16 +110,13 @@ we're still making changes to a file that's under version control that we *don't
 > To make a long story short, it's another wart left over from history.
 > Almost everyone trips over it occasionally, and as with other bugs, it can be very hard to track down.
 
-Using variables for program parameters
---------------------------------------
-
 It's common practice to use variables to define all the flags that tools need,
 so that if a tool is invoked in two or more actions,
 it's passed a consistent set of flags.
 Here, for example, we're defining `STYLE_DIR` to point to the directory holding our style files,
 then using that definition in two other variables:
 
-~~~
+~~~ {.make}
 # with-lots-of-macros.mk
 
 STYLE_DIR=c:/papers/
@@ -153,7 +135,6 @@ summary-%.dat : data-%-*.dat
 data-*-*.dat : stats.py
         touch $@
 ~~~
-{:class="in"}
 
 The first, `WPD2PDF_FLAGS`,
 is the single flag and argument we want to pass to the tool that turns our word processor file into a PDF.
@@ -161,59 +142,40 @@ The second, `SGR_FLAGS`, combines `STYLE_DIR` with a couple of other flags
 to build the arguments for the tool that turns data files into SVG diagrams.
 
 We are now ready to solve our original problem.
-Let's move the definition of `STYLE_DIR`&mdash;the variable that changes from machine to machine&mdash;out of our main Makefile,
+Let's move the definition of `STYLE_DIR` --- the variable that changes from machine to machine --- out of our main Makefile,
 and into a Makefile of its own called `config.mk`:
 
-~~~
+~~~ {.make}
 # config.mk
-~~~
-{:class="in"}
 
-~~~
 STYLE_DIR=c:/papers/
 ~~~
-{:class="in"}
 
 We can then include that file in our main Makefile using Make's `include` command.
 Our other variables and commands can then use the definition of `STYLE_DIR` just as if it had been defined in the main Makefile:
 
-~~~
+~~~ {.make}
 # with-include.mk
 include config.mk
-~~~
-{:class="in"}
 
-~~~
 WDP2PDF_FLAGS=--style ${STYLE_DIR}/euphoric.wps
 SGR_FLAGS=-N -r -s ${STYLE_DIR}/euphoric.fig
-~~~
-{:class="in"}
 
-~~~
 paper.pdf : paper.wdp figure-1.svg figure-2.svg
         wdp2pdf ${WDP2PDF_FLAGS} $<
-~~~
-{:class="in"}
 
-~~~
 figure-%.svg : summary-%.dat
         sgr ${SGR_FLAGS} $@ $^
-~~~
-{:class="in"}
 
-~~~
 summary-%.dat : data-%-*.dat
         stats.py $@ $^
-~~~
-{:class="in"}
 
-~~~
 data-*-*.dat : stats.py
         touch $@
 ~~~
-{:class="in"}
 
-Once we've tested this to make sure it works, we can copy `config.mk` to create two files that we'll put in version control.
+Once we've tested this to make sure it works,
+we can copy `config.mk` to create two files that we'll put in version control.
 The first, `config-home.mk`, defines `STYLE_DIR` for use on our laptop.
 The second, `config-lab.mk`, defines it for use in the lab.
 These two files are only changed when they need to be (i.e., when the style files move, or their names change).
@@ -230,10 +192,9 @@ and has the right definition of `STYLE_DIR`.
 We can also solve this problem by defining `STYLE_DIR` on the command line each time we run Make.
 To do this, we set the variable on the command line when invoking `make`:
 
-~~~
+~~~ {.in}
 $ make STYLE_DIR=/lib/styles -f Makefile
 ~~~
-{:class="in"}
 
 This is often a bad idea, though.
 We have to remember to type the definition each time,
@@ -242,3 +203,7 @@ right invocation.
 The biggest problem is that it leaves no record in the Makefile itself of the settings used,
 which makes life harder for other people who want to re-create our paper:
 how do they know what to type?
+
+> ## FIXME {.challenge}
+>
+> FIXME

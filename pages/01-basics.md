@@ -1,6 +1,7 @@
 ---
-layout: topic
-title: Basic Tasks
+layout: page
+title: Automating Tasks with Make
+subtitle: Basic Tasks
 minutes: 30
 ---
 > ## Learning Objectives {.objectives}
@@ -91,7 +92,8 @@ python create_figure.py figure-1.svg summary-1.dat
 
 > ## Flavors of Make {.callout}
 >
-> Nowadays, `make` is almost synonymous with the most popular implementation, GNU Make.
+> Nowadays, `make` is almost synonymous with the most popular implementation,
+> GNU Make.
 > But on some systems GNU Make may be installed as `gmake`, and the command
 > `make` be either unavailable, or point to a different Make implementation.
 > So if the former doesn't work for you, try the latter name as well.

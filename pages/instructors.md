@@ -1,6 +1,7 @@
 ---
-layout: lesson
-title: Instructor's Guide
+layout: page
+title: Automating Tasks with Make
+subtitle: Instructor's Guide
 ---
 ## Overall
 

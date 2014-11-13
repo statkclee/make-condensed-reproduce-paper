@@ -1,12 +1,8 @@
 ---
-layout: reference
+layout: page
+title: Automating Tasks with Make
+subtitle: Reference
 ---
-...commands and examples...
+FIXME
 
 ## Glossary
-
-> **Key Word 1**: the definition
-> relevant to the lesson.
-
-> **Key Word 2**: the definition
-> relevant to the lesson.

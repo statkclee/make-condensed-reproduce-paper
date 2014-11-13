@@ -1,6 +1,7 @@
 ---
-layout: topic
-title: Introduction
+layout: page
+title: Automating Tasks with Make
+subtitle: Introduction
 minutes: 10
 ---
 > ## Learning Objectives {.objectives}
