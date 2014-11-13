@@ -1,19 +1,34 @@
 ---
 layout: lesson
-title: Lesson Title
-keywords: ["some", "key terms", "in a list"]
+title: Automating Tasks with Make
+keywords: ["make", "prerequisite", "dependency"]
 ---
-Paragraph of introductory material.
+Originally invented to manage compilation of programs, `make` can be
+used to automatically execute sequences of commands (programs) and
+update any set of files that depend on another set of files. This
+makes it a good solution for many data analysis and data management
+problems, including the generation of images from data.
+
+Programs that `make` will execute are described by a text file (almost
+always called `Makefile`) containing a list of commands, called
+*rules*, and the files that they create, called *targets*. The rules
+describe how files depend on each other, and how to update out-of-date
+files. They can be very specific, useful to generate one file, or
+general, specifying a pattern for creating a certain class of files.
 
 > ## Prerequisites
 >
-> A short paragraph describing what learners need to know
-> before tackling this lesson.
+> Learners must be familiar with basic shell commands to create files
+> and directories.
 
 ## Topics
 
-* [Topic Title 1](01-one.html)
-* [Topic Title 2](02-two.html)
+*   [Introduction](00-intro.html)
+*   [Basic Tasks](01-basics.html)
+*   [Automatic Variables and Wildcards](02-automatic-variables.html)
+*   [Patterns](03-patterns.html)
+*   [Variables](04-variables.html)
+*   [Futher Reading](05-futher-reading.html)
 
 ## Other Resources
 

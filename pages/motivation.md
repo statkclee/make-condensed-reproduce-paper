@@ -1,21 +1,7 @@
 ---
 layout: slides
-title: Why Topic?
+title: Why Make?
 ---
 <section class="slide">
-## Why Topic?
-</section>
-
-<section class="slide">
-## More Explanation
-
-* With
-* Bullet
-* Points
-</section>
-
-<section class="slide">
-## Next Steps
-
-Here we go!
+## Why Make?
 </section>

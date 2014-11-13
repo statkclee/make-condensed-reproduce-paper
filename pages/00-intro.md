@@ -1,9 +1,12 @@
 ---
-layout: lesson
-root: ../..
+layout: topic
 title: Introduction
-level: intermediate
+minutes: 10
 ---
+> ## Learning Objectives {.objectives}
+>
+> * Learning objective 1
+> * Learning objective 2
  
 Here's a typical working day for our robot.
 The first thing it wants to do when it sits down in the morning is re-draw Figure 8 for the paper it's writing.
@@ -66,6 +69,6 @@ It is more powerful and more flexible than Make, but isn't nearly as widely used
 Java users should also look at [Apache Ant](http://ant.apache.org/), the standard build manager for Java.
 It hides many of the platform-specific details that bedevil Make, but requires users to write XML files to get things done.
 
-## Before getting started
-
-Run `make lesson` in the directory where this introduction lives
+> ## FIXME {.challenge}
+>
+> FIXME
