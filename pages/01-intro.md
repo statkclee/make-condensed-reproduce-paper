@@ -21,13 +21,13 @@ since *someone*'s MP3 collection is taking up 99.8% of available space.
 
 And so it goes: everything it wants to do seems to require something else to be done first.
 Until eventually, it finds himiself saying, "Right, so I need to shave the yak..."
-We won't go that far with him, though&mdash;not today.
+We won't go that far with him, though --- not today.
 
 Instead, here's that set of jobs once again.
-We can think of this set as a [graph](../../gloss.html#graph).
+We can think of this set as a **graph**.
 
-The things he needs to do&mdash;the [tasks](../../gloss.html#task)&mdash;are the graph's nodes.
-The [dependencies](../../gloss.html#dependency) between the tasks are the graph's edges.
+The things he needs to do --- the ***tasks*** --- are the graph's nodes.
+The ***dependencies*** between the tasks are the graph's edges.
 Since the robot can only do one thing at a time,
 it needs to find an ordering on these tasks such that everything a given task depends on is done before it.
 
@@ -42,9 +42,9 @@ and what is up-to-date and what isn't, i.e., what's been done and what still nee
 This is where tools like Make come in.
 One of the fundametal rules of computing is that anything worth repeating is worth automating.
 If we need to do the same tasks over and over again,
-we should use a [build manager](../../gloss.html#build-manager) to handle the details.
+we should use a **build manager** to handle the details.
 
-We describe dependencies in a [build file](../../gloss.html#build-file),
+We describe dependencies in a **build file**,
 which is usually just a plain text file in some specialized format.
 We also describe how to update things,
 i.e., what commands to run when something's dependencies have been satisfied and it's ready to be refreshed itself.

@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Automating Tasks with Make
-subtopic: Variables
+subtitle: Variables
 minutes: 20
 ---
 > ## Learning Objectives {.objectives}

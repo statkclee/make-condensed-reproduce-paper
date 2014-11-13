@@ -20,13 +20,13 @@ all : commands
 preview : $(DST_PAGES)
 
 # Pattern for slides (different parameters and template).
-$(DST_DIR)/motivation.html : $(SRC_DIR)/motivation.md
+$(DST_DIR)/motivation.html : $(SRC_DIR)/motivation.md ../_layouts/slides.html
 	pandoc -s -t html \
 	--template=../_layouts/slides \
 	-o $@ $<
 
 # Pattern to build a generic page.
-$(DST_DIR)/%.html : $(SRC_DIR)/%.md
+$(DST_DIR)/%.html : $(SRC_DIR)/%.md ../_layouts/page.html
 	pandoc -s -t html \
 	--template=../_layouts/page \
 	--filter=../tools/blockquote2div.py \
@@ -58,3 +58,7 @@ settings :
 ## clean    : Clean up temporary and intermediate files.
 clean :
 	@rm -rf $$(find .. -name '*~' -print)
+
+## sterile  : Remove generated HTML.
+sterile :
+	@rm -f $(DST_PAGES)
